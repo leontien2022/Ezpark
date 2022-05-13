@@ -110,6 +110,21 @@ def insertToSupply(space_onwer_id, parking_space_name, parking_space_address,par
     print("成功取得新增ID")
     return id
 
+def insertToCheckSpaceNum(parking_space_id, parking_space_address, parking_space_number):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
+    add_supply_checkSpaceNum = ("INSERT INTO check_spaceNum "
+                  "VALUES (%s, %s, %s)")
+    data_supply = (parking_space_id, parking_space_address, parking_space_number)
+    cursor.execute(add_supply_checkSpaceNum, data_supply)
+    cnx.commit()
+    print("supply checkSpaceNum 新增成功")
+    cursor.close()
+    cnx.close()    
+
+
+
+
 def insertToSupplyStatus(parking_space_id, space_status):
     cnx = cnxpool.get_connection()
     cursor = cnx.cursor()
